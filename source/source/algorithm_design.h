@@ -13,57 +13,22 @@ void swap(int& a, int& b) {
     a = b;
     b = temp;
 }
-// Read and parse data in array in file:
-int* read_and_parse_file(const string& filename) {
-    ifstream in(filename, ios::in);
-    int* a = nullptr;
-
-    if (!in.is_open()) {
-        cout << "Can't open file!" << endl;
-        return a;
-    }
-
-    int size = 0;
-    in >> size;
-    in.ignore();
-    a = new int[size];
-
-    for (int i = 0; i < size; i++) {
-        string token;
-        if (!getline(in, token, ',')) {
-            cout << "Error: Can't read data from file!" << endl;
-            delete[] a;
-            return nullptr;
-        }
-
-        try {
-            a[i] = stoi(token);
-        }
-        catch (const invalid_argument& e) {
-            cerr << "Error: Can't convert string to integer! Details: " << e.what() << endl;
-            delete[] a;
-            return nullptr;
-        }
-    }
-    in.close();
-    return a;
-}
-
 
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
 // Algorithm 1 (Euclid's Algorithm):
-int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare) {
+int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, long long& num_recursions) {
     if (b == 0) {
         count_compare++; // Compare (b == 0)
         return a;
     }
     else {
         count_compare++; // Compare (b == 0)
-        count_assign++; // Assign (gọi hàm đệ quy)
-        count_assign++; // Assign (gọi hàm đệ quy)
+        count_assign++; // Assign a = b (gọi hàm đệ quy)
+        count_assign++; // Assign b = a % b(gọi hàm đệ quy)
         count_compare++; // Compare (a % b)
-        return GCD_Euclid(b, a % b, count_assign, count_compare); // Đệ quy
+        num_recursions++; // Increase the recursion count by 1
+        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Đệ quy
     }
 }
 
