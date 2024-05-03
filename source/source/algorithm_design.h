@@ -34,16 +34,16 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
 
 // Algorithm 2 (Simple Division):
 int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) {
-    int gcd = 1; // Assign
-    count_assign++; // Assign
+    int gcd = 1; 
+    count_assign++; // Assign gcd = 1
 
     for (int i = 1; i <= min(a, b); i++) { // Compare i <= min(a, b)
         count_compare += 4; 
         count_assign++;
         if (a % i == 0 && b % i == 0) { // Compare (a % i == 0) and (b % i == 0)
             count_compare += 2;
-            gcd = i; // Assign
-            count_assign++;
+            gcd = i; 
+            count_assign++; // Assign gcd = i
         }
         else
             count_compare += 2;
