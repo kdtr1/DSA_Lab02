@@ -73,12 +73,15 @@ int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) 
     count_assign++; // Assign
 
     for (int i = 1; i <= min(a, b); i++) { // Compare i <= min(a, b)
-        count_compare += 3;
+        count_compare += 4; 
+        count_assign++;
         if (a % i == 0 && b % i == 0) { // Compare (a % i == 0) and (b % i == 0)
             count_compare += 2;
             gcd = i; // Assign
             count_assign++;
         }
+        else
+            count_compare += 2;
     }
     return gcd;
 }
