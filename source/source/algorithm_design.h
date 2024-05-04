@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 #ifndef _Algorithm_Design_H_
 #define _Algorithm_Design_H_
 #include <iostream>
@@ -12,24 +12,27 @@ void swap(int& a, int& b) {
     b = temp;
 }
 
+
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
 // Algorithm 1 (Simple Division):
 int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) {
-    int gcd = 1; 
-    count_assign++; // Assign gcd = 1
+    count_assign = 0, count_compare = 0;
+    int gcd = 1; // Assign
+    count_assign++; // Assign
 
-    for (int i = 1; i <= min(a, b); i++) { // Compare i <= min(a, b)
-        count_compare += 4; 
-        count_assign++;
-        count_compare += 2;
-        if (a % i == 0 && b % i == 0) { // Compare (a % i == 0) and (b % i == 0)
-            gcd = i; 
-            count_assign++; // Assign gcd = i
+    for (int i = 1; i <= min(a, b); i++) { 
+        count_compare += 3; //Compare in min (a,b)
+        count_compare++; // Compare i <= min(a, b)
+        count_assign++; //Assign i = 1, i = 2, ..., i = min(a,b)
+        count_compare += 2; // Compare (a % i == 0) and (b % i == 0)
+        if (a % i == 0 && b % i == 0) { 
+            gcd = i; // Assign
+            count_assign++;
         }
     }
-    count_compare += 4;
-    count_assign++;
+    count_compare+=4; // Compare i > min(a, b) and Compare in min (a,b)
+    count_assign++; // Assign i = min(a,b) + 1
     return gcd;
 }
 
@@ -50,7 +53,7 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
 }
 
 
-// (ii) Longest increasing subsequence: (LIS)
+// (ii) Longest non decreasing subsequence: (LIS)
 // Algorithm 1 (Brute-Force Approach):
 int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
     if (n == 0) {
