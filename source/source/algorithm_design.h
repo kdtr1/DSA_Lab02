@@ -53,7 +53,7 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
 }
 
 
-// (ii) Longest non decreasing subsequence: (LIS)
+// (ii) Longest non decreasing subsequence: (LNDS)
 // Algorithm 1 (Brute-Force Approach):
 int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
     count_assign = 0;
