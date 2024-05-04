@@ -14,23 +14,7 @@ void swap(int& a, int& b) {
 
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
-// Algorithm 1 (Euclid's Algorithm):
-int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, long long& num_recursions) {
-    if (b == 0) {
-        count_compare++; // Compare (b == 0)
-        return a;
-    }
-    else {
-        count_compare++; // Compare (b == 0)
-        count_assign++; // Assign a = b (gọi hàm đệ quy)
-        count_assign++; // Assign b = a % b(gọi hàm đệ quy)
-        count_compare++; // Compare (a % b)
-        num_recursions++; // Increase the recursion count by 1
-        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Đệ quy
-    }
-}
-
-// Algorithm 2 (Simple Division):
+// Algorithm 1 (Simple Division):
 int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) {
     int gcd = 1; 
     count_assign++; // Assign gcd = 1
@@ -49,34 +33,25 @@ int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) 
     return gcd;
 }
 
-
-// (ii) Longest increasing subsequence: (LIS)
-// Algorithm 1 (Simple LIS):
-int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
-    if (n == 0) {
-        count_compare++;
-        return 0;
+// Algorithm 2 (Euclid's Algorithm):
+int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, long long& num_recursions) {
+    if (b == 0) {
+        count_compare++; // Compare (b == 0)
+        return a;
     }
-
-    int longest_length = 1; int current_length = 1;
-    count_assign += 2;
-    for (int i = 0; i < n - 1; i++) {
-        count_compare++;    // Compare a[i] <= a[i + 1]
-        if (a[i] <= a[i + 1]) {
-            current_length++;
-            longest_length = max(longest_length, current_length);
-            count_compare += 3;
-            count_assign++; // Assign longest_length 
-        }
-        else {
-            current_length = 1;
-            count_assign++;
-        }
+    else {
+        count_compare++; // Compare (b == 0)
+        count_assign++; // Assign a = b (gọi hàm đệ quy)
+        count_assign++; // Assign b = a % b(gọi hàm đệ quy)
+        count_compare++; // Compare (a % b)
+        num_recursions++; // Increase the recursion count by 1
+        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Đệ quy
     }
-    return longest_length;
 }
 
-// Algorithm 2 (Brute-Force Approach):
+
+// (ii) Longest increasing subsequence: (LIS)
+// Algorithm 1 (Brute-Force Approach):
 int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
     if (n == 0) {
         count_compare++;
@@ -101,6 +76,31 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
                 longest_length = max(longest_length, j - i + 1);
                 count_compare += 3;
             }
+        }
+    }
+    return longest_length;
+}
+
+// Algorithm 2 (Simple LIS):
+int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
+    if (n == 0) {
+        count_compare++;
+        return 0;
+    }
+
+    int longest_length = 1; int current_length = 1;
+    count_assign += 2;
+    for (int i = 0; i < n - 1; i++) {
+        count_compare++;    // Compare a[i] <= a[i + 1]
+        if (a[i] <= a[i + 1]) {
+            current_length++;
+            longest_length = max(longest_length, current_length);
+            count_compare += 3;
+            count_assign++; // Assign longest_length 
+        }
+        else {
+            current_length = 1;
+            count_assign++;
         }
     }
     return longest_length;
