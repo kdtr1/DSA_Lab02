@@ -63,8 +63,7 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
         return 0;
     }
 
-    int longest_length = 1;
-    count_assign++;
+    int longest_length = 1; count_assign++;
     for (int i = 0; i < n; i++) {
         for (int j = i; j < n; j++) {
             count_compare++;    // Compare i <= j
@@ -77,6 +76,7 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
                     break;
                 }
             }
+            count_compare++;
             if (is_non_decreasing) {
                 count_assign++;
                 longest_length = max(longest_length, j - i + 1);
