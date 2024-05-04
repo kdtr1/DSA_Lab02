@@ -65,7 +65,7 @@ int main() {
     generate_data(a, n, data_type);
 
     // (ii) LIS:
-    cout << "(ii) Longest increasing subsequence:" << endl;
+    cout << "(ii) Longest non decreasing subsequence:" << endl;
     cout << "Array after generating random data:" << endl;
     print(a, n); cout << endl;
     int a_B[] = { 1, 2, 3, 2, 4, 5, 6, 3, 7 };
