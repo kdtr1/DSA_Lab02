@@ -65,10 +65,16 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
 
     int longest_length = 1; count_assign++;
     for (int i = 0; i < n; i++) {
+        count_compare++; // Compare i < n
+        count_assign++; // Assign i = 0, 1, 2, ..., n-1
         for (int j = i; j < n; j++) {
+            count_compare++; // Compare j < n
+            count_assign++; // Assign j = i, ..., n-1
             count_compare++;    // Compare i <= j
             bool is_non_decreasing = true;
             for (int k = i + 1; k <= j; k++) {
+                count_compare++; // Compare k <= j
+                count_assign++; // Assign k = i+1, ..., j
                 count_compare++;    // Compare a[k] < a[k - 1]
                 if (a[k] < a[k - 1]) {
                     is_non_decreasing = false;
@@ -76,6 +82,8 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
                     break;
                 }
             }
+            count_compare++; // Compare k > j
+            count_assign++; // Assign k = j + 1
             count_compare++;
             if (is_non_decreasing) {
                 count_assign++;
@@ -83,7 +91,11 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
                 count_compare += 3;
             }
         }
+        count_compare++; // Compare j = n
+        count_assign++; // Assign j = n
     }
+    count_compare++; // Compare i > n - 1
+    count_assign++; // Assign i = n
     return longest_length;
 }
 
@@ -100,7 +112,7 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
     count_assign += 2;
     for (int i = 0; i < n - 1; i++) {
         count_compare++; // Compare i < n - 1
-        count_assign++; // Assign i = 0, 1, 2, ..., n-1
+        count_assign++; // Assign i = 0, 1, 2, ..., n-2
         count_compare++; // Compare a[i] <= a[i + 1]
         if (a[i] <= a[i + 1]) {
             current_length++; count_assign++;
