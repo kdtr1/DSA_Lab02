@@ -99,7 +99,8 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
     int longest_length = 1; int current_length = 1;
     count_assign += 2;
     for (int i = 0; i < n - 1; i++) {
-        count_compare++; count_assign++;
+        count_compare++; // Compare i < n - 1
+        count_assign++; // Assign i = 0, 1, 2, ..., n-1
         count_compare++;    // Compare a[i] <= a[i + 1]
         if (a[i] <= a[i + 1]) {
             current_length++;
@@ -112,7 +113,8 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
             count_assign++;
         }
     }
-    count_compare++; count_assign++;
+    count_compare++; //Compare i > n - 1
+    count_assign++; // Assign i = n
     return longest_length;
 }
 
