@@ -58,8 +58,8 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
 int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
     count_assign = 0;
     count_compare = 0;
+    count_compare++; // Compare n == 0
     if (n == 0) {
-        count_compare++;
         return 0;
     }
 
@@ -91,8 +91,8 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
 int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
     count_assign = 0;
     count_compare = 0;
+    count_compare++; // Compare n == 0
     if (n == 0) {
-        count_compare++; // Compare n == 0
         return 0;
     }
 
