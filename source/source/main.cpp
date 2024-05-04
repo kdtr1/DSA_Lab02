@@ -53,10 +53,10 @@ int main() {
     long long count_assign_A_2 = 0, count_compare_A_2 = 0;
     long long count_recursions = 0;
     cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
-    int res_A_1 = GCD_Euclid(u, v, count_assign_A_1, count_compare_A_1, count_recursions);
-    int res_A_2 = GCD_Brute_Force(u, v, count_assign_A_2, count_compare_A_2);
-    cout << "Algorithm 1 (Euclid's Algorithm):" << setw(10) << res_A_1 << setw(14) << count_assign_A_1 << setw(15) << count_compare_A_1 << endl;
-    cout << "Algorithm 2 (Simple Division):" << setw(13) << res_A_2 << setw(14) << count_assign_A_2 << setw(15) << count_compare_A_2 << endl;
+    int res_A_1 = GCD_Bruce_Force(v, u, count_assign_A_1, count_compare_A_1);
+    int res_A_2 = GCD_Euclid(v, u, count_assign_A_2, count_compare_A_2, count_recursions);
+    cout << "Algorithm 1 (Simple Division):" << setw(13) << res_A_1 << setw(14) << count_assign_A_1 << setw(15) << count_compare_A_1 << endl;
+    cout << "Algorithm 2 (Euclid's Algorithm):" << setw(10) << res_A_2 << setw(14) << count_assign_A_2 << setw(15) << count_compare_A_2 << endl;
     cout << endl;  print_line(100); cout << endl;
 
     int n = 10;
@@ -65,7 +65,7 @@ int main() {
     generate_data(a, n, data_type);
 
     // (ii) LIS:
-    cout << "(ii) Longest increasing subsequence:" << endl;
+    cout << "(ii) Longest non decreasing subsequence:" << endl;
     cout << "Array after generating random data:" << endl;
     print(a, n); cout << endl;
     int a_B[] = { 1, 2, 3, 2, 4, 5, 6, 3, 7 };
@@ -73,10 +73,10 @@ int main() {
     long long count_assign_B_1 = 0, count_compare_B_1 = 0;
     long long count_assign_B_2 = 0, count_compare_B_2 = 0;
     cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
-    int res_B_1 = LIS_simple(a, n, count_assign_B_1, count_compare_B_1);
-    int res_B_2 = LIS_Brute_Force(a, n, count_assign_B_2, count_compare_B_2);
-    cout << "Algorithm 1 (Simple LIS):" << setw(18) << res_B_1 << setw(14) << count_assign_B_1 << setw(15) << count_compare_B_1 << endl;
-    cout << "Algorithm 2 (Brute-Force Approach):" << setw(8) << res_B_2 << setw(14) << count_assign_B_2 << setw(15) << count_compare_B_2 << endl;
+    int res_B_1 = LNDS_Brute_Force(a, n, count_assign_B_1, count_compare_B_1);
+    int res_B_2 = LNDS_simple(a, n, count_assign_B_2, count_compare_B_2);
+    cout << "Algorithm 1 (Brute-Force Approach):" << setw(8) << res_B_1 << setw(14) << count_assign_B_1 << setw(15) << count_compare_B_1 << endl;
+    cout << "Algorithm 2 (Simple LIS):" << setw(18) << res_B_2 << setw(14) << count_assign_B_2 << setw(15) << count_compare_B_2 << endl;
     cout << endl;  print_line(100); cout << endl;
 
 
@@ -94,7 +94,7 @@ int main() {
     cout << setw(53) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
     calculate_median_Brute_Force(sub_C_1, n_C, B_1, count_assign_C_1, count_compare_C_1);
     calculate_median_Heap(sub_C_2, n_C, B_2, count_assign_C_2, count_compare_C_2);
-    cout << "Algorithm 1 (Brute Force Algorithm):" << setw(9); print_median(B_1, n_C); cout << setw(10) << count_assign_C_1 << setw(15) << count_compare_C_1 << endl;
+    cout << "Algorithm 1 (Brute-Force Algorithm):" << setw(9); print_median(B_1, n_C); cout << setw(10) << count_assign_C_1 << setw(15) << count_compare_C_1 << endl;
     cout << "Algorithm 2 (Heap structure Algorithm):" << setw(6); print_median(B_2, n_C); cout << setw(10) << count_assign_C_2 << setw(15) << count_compare_C_2 << endl;
     delete[] B_1, B_2, sub_C_1, sub_C_2;
     cout << endl;  print_line(100); cout << endl;
@@ -112,7 +112,7 @@ int main() {
     cout << setw(53) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
     int res_D_1 = count_inversions_Bruce_Force(sub_D_1, n_D, count_assign_D_1, count_compare_D_1);
     int res_D_2 = count_inversions_Divide_and_Conquer(sub_D_2, n_D, count_assign_D_2, count_compare_D_2);
-    cout << "Algorithm 1 (Brute Force Algorithm):" << setw(15) << res_D_1 << setw(14) << count_assign_D_1 << setw(15) << count_compare_D_1 << endl;
+    cout << "Algorithm 1 (Brute-Force Algorithm):" << setw(15) << res_D_1 << setw(14) << count_assign_D_1 << setw(15) << count_compare_D_1 << endl;
     cout << "Algorithm 2 (Divide and Conquer Algorithm):" << setw(8) << res_D_2 << setw(14) << count_assign_D_2 << setw(15) << count_compare_D_2 << endl;
     cout << endl;  print_line(100); cout << endl;
 

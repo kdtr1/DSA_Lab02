@@ -15,10 +15,11 @@ void swap(int& a, int& b) {
 
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
-// Algorithm 1 (Brute-Force Method):
+// Algorithm 1 (Brute Force GCD):
 int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_compare) {
-    int gcd = 1;
-    count_assign++; // Assign gcd = 1
+    count_assign = 0, count_compare = 0;
+    int gcd = 1; // Assign
+    count_assign++; // Assign
 
     count_assign++; //-----int i = 1
     for (int i = 1; i <= min(a, b); i++) {
@@ -57,14 +58,17 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
 }
 
 
-// (ii) Longest non decreasing subsequence: (LIS)
+// (ii) Longest non decreasing subsequence: (LNDS)
 // Algorithm 1 (Brute-Force Approach):
-int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
+int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
+    count_assign = 0;
+    count_compare = 0;
+    count_compare++; // Compare n == 0
     if (n == 0) {
-        count_compare++;
         return 0;
     }
 
+<<<<<<< HEAD
     int longest_length = 1;
     count_assign++;
 
@@ -90,6 +94,31 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
                 }
             }
             if (is_non_decreasing) {count_compare++; //-----is_non_decreasing == (is_non_decreasing == true)
+=======
+    int longest_length = 1; count_assign++;
+    for (int i = 0; i < n; i++) {
+        count_compare++; // Compare i < n
+        count_assign++; // Assign i = 0, 1, 2, ..., n-1
+        for (int j = i; j < n; j++) {
+            count_compare++; // Compare j < n
+            count_assign++; // Assign j = i, ..., n-1
+            count_compare++;    // Compare i <= j
+            bool is_non_decreasing = true;
+            for (int k = i + 1; k <= j; k++) {
+                count_compare++; // Compare k <= j
+                count_assign++; // Assign k = i+1, ..., j
+                count_compare++;    // Compare a[k] < a[k - 1]
+                if (a[k] < a[k - 1]) {
+                    is_non_decreasing = false;
+                    count_assign++;
+                    break;
+                }
+            }
+            count_compare++; // Compare k > j
+            count_assign++; // Assign k = j + 1
+            count_compare++;
+            if (is_non_decreasing) {
+>>>>>>> a58aeded48ea4142eb1d5e5b6a94a3bf6affd87f
                 count_assign++;
                 longest_length = max(longest_length, j - i + 1);
                 count_compare += 3;
@@ -97,16 +126,26 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
 
             count_compare++; //----- When exit the for loop, you have to compare until it excceeds the given range(i > n,...)
         }
+<<<<<<< HEAD
         count_compare++; //----- When exit the for loop, you have to compare until it excceeds the given range(i > n,...)
     }
     count_compare++; //----- When exit the for loop, you have to compare until it excceeds the given range(i > n,...)
+=======
+        count_compare++; // Compare j = n
+        count_assign++; // Assign j = n
+    }
+    count_compare++; // Compare i > n - 1
+    count_assign++; // Assign i = n
+>>>>>>> a58aeded48ea4142eb1d5e5b6a94a3bf6affd87f
     return longest_length;
 }
 
 // Algorithm 2 (Simple LIS):
-int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
+int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
+    count_assign = 0;
+    count_compare = 0;
+    count_compare++; // Compare n == 0
     if (n == 0) {
-        count_compare++;
         return 0;
     }
 
@@ -114,13 +153,21 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
     count_assign += 2;
     count_assign++; //----- int i=0
     for (int i = 0; i < n - 1; i++) {
+<<<<<<< HEAD
         count_assign++; //--- i++ == (i=i+1)
         count_compare++;    // Compare a[i] <= a[i + 1]
         if (a[i] <= a[i + 1]) {count_compare++; //-----a[i] <= a[i + 1]
             current_length++;
             count_assign++; //-----current_length++ == (current_length = current_length+1)
+=======
+        count_compare++; // Compare i < n - 1
+        count_assign++; // Assign i = 0, 1, 2, ..., n-2
+        count_compare++; // Compare a[i] <= a[i + 1]
+        if (a[i] <= a[i + 1]) {
+            current_length++; count_assign++;
+>>>>>>> a58aeded48ea4142eb1d5e5b6a94a3bf6affd87f
             longest_length = max(longest_length, current_length);
-            count_compare += 3;
+            count_compare += 3; // Compare in max function
             count_assign++; // Assign longest_length 
         }
         else {
@@ -128,6 +175,8 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
             count_assign++;
         }
     }
+    count_compare++; //Compare i > n - 1
+    count_assign++; // Assign i = n
     return longest_length;
 }
 
