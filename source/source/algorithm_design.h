@@ -40,14 +40,14 @@ int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) 
     for (int i = 1; i <= min(a, b); i++) { // Compare i <= min(a, b)
         count_compare += 4; 
         count_assign++;
+        count_compare += 2;
         if (a % i == 0 && b % i == 0) { // Compare (a % i == 0) and (b % i == 0)
-            count_compare += 2;
             gcd = i; 
             count_assign++; // Assign gcd = i
         }
-        else
-            count_compare += 2;
     }
+    count_compare += 4;
+    count_assign++;
     return gcd;
 }
 
