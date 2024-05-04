@@ -15,10 +15,11 @@ void swap(int& a, int& b) {
 
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
-// Algorithm 1 (Brute-Force Method):
+// Algorithm 1 (Brute Force GCD):
 int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_compare) {
-    int gcd = 1;
-    count_assign++; // Assign gcd = 1
+    count_assign = 0, count_compare = 0;
+    int gcd = 1; // Assign
+    count_assign++; // Assign
 
     for (int i = 1; i <= min(a, b); i++) {
         count_compare += 3; // Compare in min (a,b)
@@ -72,6 +73,7 @@ int LIS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_co
                 count_compare++;    // Compare a[k] < a[k - 1]
                 if (a[k] < a[k - 1]) {
                     is_non_decreasing = false;
+                    count_assign++;
                     break;
                 }
             }
@@ -97,6 +99,7 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
     int longest_length = 1; int current_length = 1;
     count_assign += 2;
     for (int i = 0; i < n - 1; i++) {
+        count_compare++; count_assign++;
         count_compare++;    // Compare a[i] <= a[i + 1]
         if (a[i] <= a[i + 1]) {
             current_length++;
@@ -109,6 +112,7 @@ int LIS_simple(int*& a, int n, long long& count_assign, long long& count_compare
             count_assign++;
         }
     }
+    count_compare++; count_assign++;
     return longest_length;
 }
 
