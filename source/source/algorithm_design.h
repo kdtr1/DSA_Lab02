@@ -15,8 +15,8 @@ void swap(int& a, int& b) {
 
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
-// Algorithm 1 (Bruce-Force Method):
-int GCD_Bruce_Force(int a, int b, long long& count_assign, long long& count_compare) {
+// Algorithm 1 (Brute-Force Method):
+int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_compare) {
     int gcd = 1;
     count_assign++; // Assign gcd = 1
 
