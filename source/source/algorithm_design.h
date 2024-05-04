@@ -4,8 +4,6 @@
 #include <iostream>
 #include <algorithm>
 #include <queue>
-#include <string>
-#include <fstream>
 using namespace std;
 
 void swap(int& a, int& b) {
