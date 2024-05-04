@@ -17,21 +17,20 @@ void swap(int& a, int& b) {
 // (i) Greatest common divisor: (GCD)
 // Algorithm 1 (Simple Division):
 int GCD_simple(int a, int b, long long& count_assign, long long& count_compare) {
-    count_assign = 0, count_compare = 0;
-    int gcd = 1; // Assign
-    count_assign++; // Assign
+    int gcd = 1;
+    count_assign++; // Assign gcd = 1
 
-    for (int i = 1; i <= min(a, b); i++) { 
-        count_compare += 3; //Compare in min (a,b)
+    for (int i = 1; i <= min(a, b); i++) {
+        count_compare += 3; // Compare in min (a,b)
         count_compare++; // Compare i <= min(a, b)
-        count_assign++; //Assign i = 1, i = 2, ..., i = min(a,b)
+        count_assign++; // Assign i = 1, i = 2, ..., i = min(a,b)
         count_compare += 2; // Compare (a % i == 0) and (b % i == 0)
-        if (a % i == 0 && b % i == 0) { 
-            gcd = i; // Assign
-            count_assign++;
+        if (a % i == 0 && b % i == 0) { // Compare (a % i == 0) and (b % i == 0)
+            gcd = i;
+            count_assign++; // Assign gcd = i
         }
     }
-    count_compare+=4; // Compare i > min(a, b) and Compare in min (a,b)
+    count_compare += 4; // Compare i > min(a, b) and Compare in min (a,b)
     count_assign++; // Assign i = min(a,b) + 1
     return gcd;
 }
@@ -48,7 +47,7 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
         count_assign++; // Assign b = a % b(gọi hàm đệ quy)
         count_compare++; // Compare (a % b)
         num_recursions++; // Increase the recursion count by 1
-        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Đệ quy
+        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Recursion
     }
 }
 
