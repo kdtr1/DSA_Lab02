@@ -54,7 +54,7 @@ int main() {
     long long count_recursions = 0;
     cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
     int res_A_1 = GCD_Euclid(u, v, count_assign_A_1, count_compare_A_1, count_recursions);
-    int res_A_2 = GCD_Bruce_Force(u, v, count_assign_A_2, count_compare_A_2);
+    int res_A_2 = GCD_Brute_Force(u, v, count_assign_A_2, count_compare_A_2);
     cout << "Algorithm 1 (Euclid's Algorithm):" << setw(10) << res_A_1 << setw(14) << count_assign_A_1 << setw(15) << count_compare_A_1 << endl;
     cout << "Algorithm 2 (Simple Division):" << setw(13) << res_A_2 << setw(14) << count_assign_A_2 << setw(15) << count_compare_A_2 << endl;
     cout << endl;  print_line(100); cout << endl;
