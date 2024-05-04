@@ -73,10 +73,10 @@ int main() {
     long long count_assign_B_1 = 0, count_compare_B_1 = 0;
     long long count_assign_B_2 = 0, count_compare_B_2 = 0;
     cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
-    int res_B_1 = LIS_simple(a, n, count_assign_B_1, count_compare_B_1);
-    int res_B_2 = LIS_Brute_Force(a, n, count_assign_B_2, count_compare_B_2);
-    cout << "Algorithm 1 (Simple LIS):" << setw(18) << res_B_1 << setw(14) << count_assign_B_1 << setw(15) << count_compare_B_1 << endl;
-    cout << "Algorithm 2 (Brute-Force Approach):" << setw(8) << res_B_2 << setw(14) << count_assign_B_2 << setw(15) << count_compare_B_2 << endl;
+    int res_B_1 = LIS_Brute_Force(a, n, count_assign_B_1, count_compare_B_1);
+    int res_B_2 = LIS_simple(a, n, count_assign_B_2, count_compare_B_2);
+    cout << "Algorithm 1 (Brute - Force Approach):" << setw(6) << res_B_1 << setw(14) << count_assign_B_1 << setw(15) << count_compare_B_1 << endl;
+    cout << "Algorithm 2 (Simple LIS):" << setw(18) << res_B_2 << setw(14) << count_assign_B_2 << setw(15) << count_compare_B_2 << endl;
     cout << endl;  print_line(100); cout << endl;
 
 
