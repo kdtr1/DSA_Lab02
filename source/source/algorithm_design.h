@@ -30,6 +30,7 @@ int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_comp
         }
     }
     count_compare += 4; // Compare i > min(a, b) and Compare in min (a,b)
+    count_assign++; // Assign i = min(a,b) + 1
     return gcd;
 }
 
@@ -45,7 +46,7 @@ int GCD_Euclid(int a, int b, long long& count_compare, long long& num_recursions
 }
 
 
-// (ii) Longest non decreasing subsequence: (LNDS)
+// (ii) Longest none decreasing subsequence: (LNDS)
 // Algorithm 1 (Brute-Force Approach):
 int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
     count_compare++; // Compare n == 0
@@ -99,7 +100,6 @@ int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compar
 
     int longest_length = 1; int current_length = 1;
     count_assign += 2;
-    count_assign++; // int i = 1
     for (int i = 0; i < n - 1; i++) {
         count_compare++; // Compare i < n - 1
         count_assign++; // Assign i = 0, 1, 2, ..., n-2
@@ -116,7 +116,7 @@ int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compar
         }
     }
     count_compare++; //Compare i > n - 1
-    count_assign++; // Assign i = n
+    count_assign++; // Assign i = n - 1
     return longest_length;
 }
 
