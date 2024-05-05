@@ -35,14 +35,15 @@ int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_comp
 }
 
 // Algorithm 2 (Euclid's Algorithm):
-int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare) {
+int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, long long& num_recursions) {
     count_compare++; // Compare (b == 0)
     if (b == 0)
         return a;
     else {
         count_assign++; // Assign a = b
         count_assign++; // Assign b = a % b
-        return GCD_Euclid(b, a % b, count_assign, count_compare); // Recursion
+        num_recursions++; // Increase the recursion count by 1
+        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Recursion
     }
 }
 
