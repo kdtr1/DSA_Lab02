@@ -16,6 +16,7 @@ void swap(int& a, int& b) {
 // (i) Greatest common divisor: (GCD)
 // Algorithm 1 (Brute-Force GCD):
 int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_compare) {
+    count_assign = 0, count_compare = 0;
     int gcd = 1;
     count_assign++; // Assign gcd = 1
 
@@ -61,7 +62,7 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
         for (int j = i; j < n; j++) {
             count_compare++; // Compare j < n
             count_assign++; // Assign j = i, ..., n-1
-            count_compare++;    // Compare i <= j
+            count_compare++;    // Compare j <= j
             bool is_non_decreasing = true;
             for (int k = i + 1; k <= j; k++) {
                 count_compare++; // Compare k <= j
@@ -100,6 +101,14 @@ int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compar
     int longest_length = 1; int current_length = 1;
     count_assign += 2;
     for (int i = 0; i < n - 1; i++) {
+<<<<<<< HEAD
+        count_assign++; //--- i++ == (i=i+1)
+        count_compare++;    // Compare a[i] <= a[i + 1]
+        if (a[i] <= a[i + 1]) {count_compare++; //-----a[i] <= a[i + 1]
+            current_length++;
+            count_assign++; //-----current_length++ == (current_length = current_length+1)
+=======
+>>>>>>> d164828db1c25363b0c73737366ef5b8627d4117
         count_compare++; // Compare i < n - 1
         count_assign++; // Assign i = 0, 1, 2, ..., n-2
         count_compare++; // Compare a[i] <= a[i + 1]
