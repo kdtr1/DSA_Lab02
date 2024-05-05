@@ -42,6 +42,7 @@ int GCD_Euclid(int a, int b, long long& count_compare, long long& num_recursions
         return a;
     else {
         num_recursions++; // Increase the recursion count by 1
+ 
         return GCD_Euclid(b, a % b, count_compare, num_recursions); // Recursion
     }
 }
@@ -183,23 +184,32 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
     priority_queue<double, vector<double>, greater<double> > g;
     double* res = new double[n];
 
-    int idx = 0; count_assign++;
-    double med = arr[0]; count_assign++;
+    int idx = 0; 
+    count_assign++; //int idx = 0; 
+    double med = arr[0]; 
+    count_assign++; //double med = arr[0];
+
     s.push(arr[0]);
 
 
-    res[idx] = med; count_assign++;
-    idx++; count_assign++;
+    res[idx] = med; 
+    count_assign++; //res[idx] = med; 
+    idx++; 
+    count_assign++; //idx++;
 
     count_assign++;// int i = 1
     for (int i = 1; i < n; i++) {
         count_assign++; // i++
-        count_compare++;//i<n
-        double x = arr[i]; count_assign++;
+        count_compare++;// i<n
+        double x = arr[i];
+        count_assign++; //double x = arr[i];
+
+        if (s.size() > g.size()) count_compare++; //if (s.size() > g.size())
+        else count_compare += 2;//if (s.size() > g.size()) && else if (s.size() == g.size()) 
+
         if (s.size() > g.size()) {
-            count_compare++;
+            count_compare++; //if (x < med)
             if (x < med) {
-                count_compare++;
                 g.push(s.top());
                 s.pop();
                 s.push(x);
@@ -207,25 +217,26 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
             else
                 g.push(x);
 
-            med = (s.top() + g.top()) / 2.0; count_assign++;
+            med = (s.top() + g.top()) / 2.0; 
+            count_assign++; //med = (s.top() + g.top()) / 2.0; 
         }
         else if (s.size() == g.size()) {
-            count_compare++;
+
+            count_compare++;//if (x < med)
             if (x < med) {
-                count_compare++;
                 s.push(x);
                 med = (double)s.top();
-                count_assign++;
+                count_assign++; //med = (double)s.top();
             }
             else {
                 g.push(x);
                 med = (double)g.top();
-                count_assign++;
+                count_assign++; //med = (double)g.top();
             }
         }
         else {
+            count_compare++; // if (x > med)
             if (x > med) {
-                count_compare++;
                 s.push(g.top());
                 g.pop();
                 g.push(x);
@@ -234,13 +245,13 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
                 s.push(x);
 
             med = (s.top() + g.top()) / 2.0;
-            count_assign++;
+            count_assign++; //med = (s.top() + g.top()) / 2.0;
         }
 
         res[idx] = med;
-        count_assign++;
+        count_assign++; //res[idx] = med;
         idx++;
-        count_compare++;
+        count_compare++; //idx++;
     }
     count_compare++; //exit the loop
     return res;
@@ -250,7 +261,9 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
 // (iv) Count inversions:
 // Algorithm 1 (Brute-Force Algorithm):
 int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, long long& count_comparisons) {
-    int inv_count = 0; count_assignments++;
+    int inv_count = 0; 
+    count_assignments++; //int inv_count = 0; 
+
     count_assignments++; // int i=0
     for (int i = 0; i < n - 1; i++) {
         count_assignments++;//i++
@@ -260,11 +273,15 @@ int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, lo
         for (int j = i + 1; j < n; j++) {
             count_comparisons++; // j < n
             count_assignments++; // j++
-            if (a[i] > a[j]) { count_comparisons++;
+
+            count_comparisons++;// if (a[i] > a[j])
+            if (a[i] > a[j]) {
                 inv_count++;
-                count_assignments ++;
+                count_assignments ++; //inv_count++;
             }
         }
+        count_comparisons++; // exit the loop
+
     }
     count_comparisons++; // exit the loop
     return inv_count;
@@ -273,54 +290,59 @@ int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, lo
 // Algorithm 2 (Divide and Conquer Algorithm):
 // Count the number of inverse pairs in each sorted subarray:
 int merge(int* a, int* temp, int left, int mid, int right, long long& count_assign, long long& count_compare) {
-    count_assign = 0;
-    count_compare = 0;
-    int inv_count = 0; count_assign++;
+    count_assign = 0; //refresh value
+    count_compare = 0; //refresh value
+    int inv_count = 0; 
+    count_assign++; // int inv_count = 0; 
     int i = left;   // Start of first subarray 
-    count_assign++;
+    count_assign++; // int i = left; 
     int j = mid + 1;// Start of second subarray
-    count_assign++;
+    count_assign++; // int j = mid + 1;
     int k = left;   // Start of temporary array
-    count_assign++;
+    count_assign++; // int k = left;
+
 
     while (i <= mid && j <= right) {
         count_compare += 2;    // Count compare
+
+        count_compare++; //if (a[i] <= a[j]) 
         if (a[i] <= a[j]) { // Compare and count assignement
-            count_compare++;
-            temp[k++] = a[i++];
+            temp[k++] = a[i++]; 
             count_assign += 2; //k++ == (k = k+1)
             count_assign++; // Assignement temp[k] = arr[i]
         }
         else {
             temp[k++] = a[j++];
-            count_assign += 2;
+            count_assign += 2; //k++ == (k = k+1)
             count_assign++; // Assignement temp[k] = arr[j]
             inv_count += (mid - i + 1); // Update the number of inverse pairs
-            count_assign++;
+            count_assign++; //inv_count += (mid - i + 1); 
         }
     }
     count_compare++; // exit the loop
+
     // Copy the remaining elements of the first subarray (if there are any)
     while (i <= mid) {
-        count_compare++;
-        temp[k++] = a[i++];
-        count_assign += 2;
+        count_compare++; // count compare
+        temp[k++] = a[i++]; //k++ == (k = k+1)
+        count_assign += 2; //k++ == (k = k+1)
         count_assign++; // Assignement temp[k] = arr[i]
     }
     count_compare++; // exit the loop
     // Copy the remaining elements of the second subarray (if there are any)
     while (j <= right) {
-        count_compare++;
+        count_compare++; // count compare
         temp[k++] = a[j++];
-        count_assign += 2;
+        count_assign += 2; //k++ == (k = k+1)
         count_assign++; // Assignement temp[k] = arr[j]
     }
     count_compare++; // exit the loop
     // Copy the temporary array into the arr array
-    count_assign++;
+
+    count_assign++; // int i = left
     for (i = left; i <= right; i++) {
-        count_assign++;
-        count_compare++;
+        count_assign++; // i++
+        count_compare++; // i <= right
         a[i] = temp[i];
         count_assign++; // Assignement arr[i] = temp[i]
     }
@@ -329,30 +351,33 @@ int merge(int* a, int* temp, int left, int mid, int right, long long& count_assi
 }
 int merge_sort(int* a, int* temp, int left, int right, long long& count_assign, long long& count_compare) {
     int inv_count = 0;
-    count_assign++;
+    count_assign++; //int inv_count = 0;
+
+    count_compare++; //if (left < right) 
     if (left < right) {
-        count_compare++;
         int mid = left + (right - left) / 2;
-        count_assign++;
+        count_assign++; //int mid = left + (right - left) / 2;
         // Count the number of assignments and comparisons at each division step
         long long left_assign = 0, left_compare = 0;
         long long right_assign = 0, right_compare = 0;
 
         inv_count += merge_sort(a, temp, left, mid, left_assign, left_compare);
+        count_assign++; // inv_count += 
         inv_count += merge_sort(a, temp, mid + 1, right, right_assign, right_compare);
+        count_assign++; //inv_count +=
+
         // Count the number of assignments and comparisons when combining two sorted arrays
         count_assign += left_assign + right_assign;
         count_compare += left_compare + right_compare;
-        count_assign += 2;
         inv_count += merge(a, temp, left, mid, right, count_assign, count_compare);
-        count_assign++;
+        count_assign++; //inv_count +=
     }
     return inv_count;
 }
 int count_inversions_Divide_and_Conquer(int* a, int n, long long& count_assign, long long& count_compare) {
     int* temp = new int[n];
     int inversions = merge_sort(a, temp, 0, n - 1, count_assign, count_compare);
-    count_assign++;
+    count_assign++; //int inversions =
     delete[] temp;
     return inversions;
 }
