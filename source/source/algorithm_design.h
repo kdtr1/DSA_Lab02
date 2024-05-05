@@ -49,41 +49,13 @@ int GCD_Euclid(int a, int b, long long& count_compare, long long& num_recursions
 // (ii) Longest non decreasing subsequence: (LNDS)
 // Algorithm 1 (Brute-Force Approach):
 int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
-    count_assign = 0;
-    count_compare = 0;
     count_compare++; // Compare n == 0
     if (n == 0) {
         return 0;
     }
 
-<<<<<<< HEAD
-    int longest_length = 1;
-    count_assign++;
-
-    count_assign++; //-----int i=0; int j=i; int k = i+1
-    for (int i = 0; i < n; i++) {
-        count_assign++;//-----i<n
-        count_compare++;//-----i++ == (i=i+1)
-
-        count_assign++;//-----int j = i
-        for (int j = i; j < n; j++) {
-            count_assign++;//-----j++ == (j=j+1)
-            count_compare++;    //(// Compare i <= j)? ----- j < n
-            bool is_non_decreasing = true; count_assign++;
-
-            count_assign++; //-----int k = i+1 
-            for (int k = i + 1; k <= j; k++) {
-                count_assign++; //-----k++ == (k=k+1)
-                count_compare++;    // Compare a[k] < a[k - 1]
-                if (a[k] < a[k - 1]) {
-                    is_non_decreasing = false;
-                    count_assign++; //-----is_non_decreasing = false;
-                    break;
-                }
-            }
-            if (is_non_decreasing) {count_compare++; //-----is_non_decreasing == (is_non_decreasing == true)
-=======
     int longest_length = 1; count_assign++;
+    count_assign++; // int i = 1
     for (int i = 0; i < n; i++) {
         count_compare++; // Compare i < n
         count_assign++; // Assign i = 0, 1, 2, ..., n-1
@@ -106,32 +78,21 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
             count_assign++; // Assign k = j + 1
             count_compare++;
             if (is_non_decreasing) {
->>>>>>> a58aeded48ea4142eb1d5e5b6a94a3bf6affd87f
                 count_assign++;
                 longest_length = max(longest_length, j - i + 1);
                 count_compare += 3;
             }
-
-            count_compare++; //----- When exit the for loop, you have to compare until it excceeds the given range(i > n,...)
         }
-<<<<<<< HEAD
-        count_compare++; //----- When exit the for loop, you have to compare until it excceeds the given range(i > n,...)
-    }
-    count_compare++; //----- When exit the for loop, you have to compare until it excceeds the given range(i > n,...)
-=======
         count_compare++; // Compare j = n
         count_assign++; // Assign j = n
     }
     count_compare++; // Compare i > n - 1
     count_assign++; // Assign i = n
->>>>>>> a58aeded48ea4142eb1d5e5b6a94a3bf6affd87f
     return longest_length;
 }
 
 // Algorithm 2 (Simple LIS):
 int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
-    count_assign = 0;
-    count_compare = 0;
     count_compare++; // Compare n == 0
     if (n == 0) {
         return 0;
@@ -139,21 +100,13 @@ int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compar
 
     int longest_length = 1; int current_length = 1;
     count_assign += 2;
-    count_assign++; //----- int i=0
+    count_assign++; // int i = 1
     for (int i = 0; i < n - 1; i++) {
-<<<<<<< HEAD
-        count_assign++; //--- i++ == (i=i+1)
-        count_compare++;    // Compare a[i] <= a[i + 1]
-        if (a[i] <= a[i + 1]) {count_compare++; //-----a[i] <= a[i + 1]
-            current_length++;
-            count_assign++; //-----current_length++ == (current_length = current_length+1)
-=======
         count_compare++; // Compare i < n - 1
         count_assign++; // Assign i = 0, 1, 2, ..., n-2
         count_compare++; // Compare a[i] <= a[i + 1]
         if (a[i] <= a[i + 1]) {
             current_length++; count_assign++;
->>>>>>> a58aeded48ea4142eb1d5e5b6a94a3bf6affd87f
             longest_length = max(longest_length, current_length);
             count_compare += 3; // Compare in max function
             count_assign++; // Assign longest_length 
