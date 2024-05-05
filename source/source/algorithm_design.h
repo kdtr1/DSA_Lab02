@@ -62,8 +62,7 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
         for (int j = i; j < n; j++) {
             count_compare++; // Compare j < n
             count_assign++; // Assign j = i, ..., n-1
-            count_compare++;    // Compare i <= j
-            bool is_non_decreasing = true;
+            bool is_non_decreasing = true; count_assign++;
             for (int k = i + 1; k <= j; k++) {
                 count_compare++; // Compare k <= j
                 count_assign++; // Assign k = i+1, ..., j
@@ -76,11 +75,11 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
             }
             count_compare++; // Compare k > j
             count_assign++; // Assign k = j + 1
-            count_compare++;
+            count_compare++; // Compare is_non_descreasing is true or false
             if (is_non_decreasing) {
-                count_assign++;
+                count_assign++; // Assign longest_length
                 longest_length = max(longest_length, j - i + 1);
-                count_compare += 3;
+                count_compare += 3; // Compare in max function
             }
         }
         count_compare++; // Compare j = n
