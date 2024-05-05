@@ -66,17 +66,19 @@ void generate_data(int*& a, int n, int data_type) {
         print(a, n);
         break;
     case 1: { // random ascending
-        int* temp_1 = nullptr;
+        int* temp_1 = new int[n];
         generate_random_data(temp_1, n);
         int* ans = generate_sorted_data(temp_1, n);
+        a = ans;
         cout << "Array after generating random data:" << endl;
         print(ans, n);
         break;
     }
     case 2: { // random descending
-        int* temp_2 = nullptr;
+        int* temp_2 = new int[n];
         generate_random_data(temp_2, n);
         int* res = generate_reverse_data(temp_2, n);
+        a = res;
         cout << "Array after generating random data:" << endl;
         print(res, n);
         break;
