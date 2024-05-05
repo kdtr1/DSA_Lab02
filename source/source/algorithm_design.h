@@ -15,13 +15,11 @@ void swap(int& a, int& b) {
 
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
-// Algorithm 1 (Brute Force GCD):
+// Algorithm 1 (Brute-Force GCD):
 int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_compare) {
-    count_assign = 0, count_compare = 0;
-    int gcd = 1; // Assign
-    count_assign++; // Assign
+    int gcd = 1;
+    count_assign++; // Assign gcd = 1
 
-    count_assign++; //-----int i = 1
     for (int i = 1; i <= min(a, b); i++) {
         count_compare += 3; // Compare in min (a,b)
         count_compare++; // Compare i <= min(a, b)
@@ -33,27 +31,18 @@ int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_comp
         }
     }
     count_compare += 4; // Compare i > min(a, b) and Compare in min (a,b)
-    //-----Why do we have to assign i = min(a,b) + 1?
-    //count_assign++; // Assign i = min(a,b) + 1
-    //-----
     return gcd;
 }
 
 // Algorithm 2 (Euclid's Algorithm):
-int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, long long& num_recursions) {
-    if (b == 0) {
-        count_compare++; // Compare (b == 0)
+int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare) {
+    count_compare++; // Compare (b == 0)
+    if (b == 0)
         return a;
-    }
     else {
-        //-----Is a function call or a recursive call not considered a comparison operation?
-        //count_compare++; // Compare (b == 0)
-        //count_assign++; // Assign a = b (gọi hàm đệ quy)
-        //count_assign++; // Assign b = a % b(gọi hàm đệ quy)
-        //count_compare++; // Compare (a % b)
-        //-----
-        num_recursions++; // Increase the recursion count by 1
-        return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Recursion
+        count_assign++; // Assign a = b
+        count_assign++; // Assign b = a % b
+        return GCD_Euclid(b, a % b, count_assign, count_compare); // Recursion
     }
 }
 
