@@ -249,7 +249,7 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
 
 
 // (iv) Count inversions:
-// Algorithm 1 (Brute Force Algorithm):
+// Algorithm 1 (Brute-Force Algorithm):
 int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, long long& count_comparisons) {
     int inv_count = 0; count_assignments++;
     count_assignments++; // int i=0
