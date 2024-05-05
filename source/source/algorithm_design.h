@@ -55,7 +55,6 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
     }
 
     int longest_length = 1; count_assign++;
-    count_assign++; // int i = 1
     for (int i = 0; i < n; i++) {
         count_compare++; // Compare i < n
         count_assign++; // Assign i = 0, 1, 2, ..., n-1
