@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _Algorithm_Design_H_
-#define _Algorithm_Design_H_
+#ifndef _ALGORITHM_DESIGN_H_
+#define _ALGORITHM_DESIGN_H_
 #include <iostream>
 #include <algorithm>
 #include <queue>
@@ -12,7 +12,6 @@ void swap(int& a, int& b) {
     b = temp;
 }
 
-
 // 2. Algorithm Design:
 // (i) Greatest common divisor: (GCD)
 // Algorithm 1 (Brute-Force GCD):
@@ -20,7 +19,6 @@ int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_comp
     int gcd = 1;
     count_assign++; // Assign gcd = 1
 
-    count_assign++; // int i = 1
     for (int i = 1; i <= min(a, b); i++) {
         count_compare += 3; // Compare in min (a,b)
         count_compare++; // Compare i <= min(a, b)
@@ -35,6 +33,7 @@ int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_comp
     return gcd;
 }
 
+// Algorithm 2 (Euclid's Algorithm):
 int GCD_Euclid(int a, int b, long long& count_compare, long long& num_recursions) {
     count_compare++; // Compare (b == 0)
     if (b == 0)
@@ -128,8 +127,8 @@ void print_median(double* B, int n) {
         cout << B[i] << " ";
     }
 }
-// Algorithm 1 (Brute Force Algorithm):
-double* medianArray(int* a, int n, long long& count_assign, long long& count_compare) {
+// Algorithm 1 (Brute-Force Algorithm):
+double* median_array_Brute_Force(int* a, int n, long long& count_assign, long long& count_compare) {
     //Sorted Part
     double* B = new double[n];
     count_assign++;//int i = 0
@@ -179,8 +178,8 @@ double* medianArray(int* a, int n, long long& count_assign, long long& count_com
     return B;
 }
 
-// Algorithm 2 (Heap structure Algorithm):
-double* medianArray_Heap(int* arr, int n, long long& count_assign, long long& count_compare) {
+// Algorithm 2 (Heap structure-priority queue):
+double* median_array_Heap(int* arr, int n, long long& count_assign, long long& count_compare) {
     priority_queue<double> s;
     priority_queue<double, vector<double>, greater<double> > g;
     double* res = new double[n];
