@@ -20,6 +20,7 @@ int GCD_Brute_Force(int a, int b, long long& count_assign, long long& count_comp
     int gcd = 1;
     count_assign++; // Assign gcd = 1
 
+    count_assign++;
     for (int i = 1; i <= min(a, b); i++) {
         count_compare += 3; // Compare in min (a,b)
         count_compare++; // Compare i <= min(a, b)
