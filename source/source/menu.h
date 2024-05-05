@@ -7,10 +7,12 @@
 #include <iomanip>
 #include <string>
 
-void copy_array(int* a, int* sub, int n) {
+int* copy_array(int* a, int n) {
+    int* sub = new int[n];
     for (int i = 0; i < n; i++) {
         sub[i] = a[i];
     }
+    return sub;
 }
 
 // Information of main menu:
@@ -147,15 +149,15 @@ void process_menu_2() {
             cout << "Your choice to choose is: " << choice << endl;
             cout << "3. Median of array: " << endl;
             generate_data(a, n, data_type);
-            int* sub_C_1 = new int[n]; copy_array(a, sub_C_1, n);
-            int* sub_C_2 = new int[n]; copy_array(a, sub_C_2, n);
+            int* sub_C_1 = copy_array(a, n);
+            int* sub_C_2 = copy_array(a, n);
             long long count_assign_C_1 = 0, count_compare_C_1 = 0;
             long long count_assign_C_2 = 0, count_compare_C_2 = 0;
-            cout << setw(53) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
-            double* B_1 = medianArray(sub_C_1, n, count_assign_C_1, count_compare_C_1);
-            double* B_2 = medianArray_Heap(sub_C_2, n, count_assign_C_2, count_compare_C_2);
-            cout << "Algorithm 1 (Brute-Force Algorithm):" << setw(9); print_median(B_1, n); cout << setw(10) << count_assign_C_1 << setw(15) << count_compare_C_1 << endl;
-            cout << "Algorithm 2 (Heap structure Algorithm):" << setw(6); print_median(B_2, n); cout << setw(10) << count_assign_C_2 << setw(15) << count_compare_C_2 << endl;
+            cout << setw(66) << "Result" << setw(31) << "Assignments" << setw(15) << "Comparisons" << endl;
+            double* B_1 = median_array_Brute_Force(sub_C_1, n, count_assign_C_1, count_compare_C_1);
+            double* B_2 = median_array_Heap(sub_C_2, n, count_assign_C_2, count_compare_C_2);
+            cout << "Algorithm 1 (Brute-Force Algorithm):" << setw(14); print_median(B_1, n); cout << setw(11) << count_assign_C_1 << setw(15) << count_compare_C_1 << endl;
+            cout << "Algorithm 2 (Heap structure-priority queue):" << setw(6); print_median(B_2, n); cout << setw(11) << count_assign_C_2 << setw(15) << count_compare_C_2 << endl;
             delete[] a, B_1, B_2, sub_C_1, sub_C_2;
             cout << endl << endl;
             break;
@@ -164,8 +166,8 @@ void process_menu_2() {
             cout << "Your choice to choose is: " << choice << endl;
             cout << "4. Count inversions: " << endl;
             generate_data(a, n, data_type);
-            int* sub_D_1 = new int[n]; copy_array(a, sub_D_1, n);
-            int* sub_D_2 = new int[n]; copy_array(a, sub_D_2, n);
+            int* sub_D_1 = copy_array(a, n);
+            int* sub_D_2 = copy_array(a, n);
             long long count_assign_D_1 = 0, count_compare_D_1 = 0;
             long long count_assign_D_2 = 0, count_compare_D_2 = 0;
             cout << setw(53) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
@@ -244,4 +246,4 @@ void process_main_menu() {
     }
 }
 
-#endif 
+#endif
