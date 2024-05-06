@@ -121,11 +121,10 @@ void process_menu_2() {
             cout << "1. Greatest common divisor: " << endl;
             cout << "u = " << u << ", v = " << v << endl;
             long long count_assign_A_1 = 0, count_compare_A_1 = 0;
-            long long count_assign_A_2 = 0, count_compare_A_2 = 0;
-            long long count_recursions = 0;
+            long long count_assign_A_2 = 0, count_compare_A_2 = 0, count_recursions = 0;
             cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
-            int res_A_1 = GCD_Brute_Force(v, u, count_assign_A_1, count_compare_A_1);
-            int res_A_2 = GCD_Euclid(v, u, count_compare_A_2, count_recursions);
+            int res_A_1 = GCD_Brute_Force(max(u, v), min(u, v), count_assign_A_1, count_compare_A_1);
+            int res_A_2 = GCD_Euclid(max(u, v), min(u, v), count_compare_A_2, count_recursions);
             count_assign_A_2 = count_recursions * 2;
             cout << "Algorithm 1 (Brute-Force Method):" << setw(10) << res_A_1 << setw(14) << count_assign_A_1 << setw(15) << count_compare_A_1 << endl;
             cout << "Algorithm 2 (Euclid's Algorithm):" << setw(10) << res_A_2 << setw(14) << count_assign_A_2 << setw(15) << count_compare_A_2 << endl;
