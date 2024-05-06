@@ -24,7 +24,7 @@ void print(int* a, int n) {
 void generate_random_data_number(int& a, int& b) {
     srand((unsigned int)time(nullptr));
     a = rand() % 100;
-    b = rand() % 100;
+    b = rand() % a;
 }
 
 // Generate random array of data:
