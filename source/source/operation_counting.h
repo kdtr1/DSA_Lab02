@@ -24,11 +24,11 @@ int recursive_square_sum(int n, int& count_assign, int& count_compare) {
     // In the case of the following code, there is only comparison and no assignment
     count_compare++;
     if (n < 1) { // has 1 comparison
-        count_assign++;
+        //count_assign++;
         return 0; // has 1 assignment
     }
     else {
-        count_assign++; // has 1 assignment
+        //count_assign++; // has 1 assignment
         return n * n + recursive_square_sum(n - 1,  count_assign,count_compare);
     }
 }
