@@ -75,11 +75,12 @@ void process_menu_1() {
         case 2: {
             cout << "Your choice to choose is: " << choice << endl;
             cout << "2. Recursive square sum : " << endl;
-            cout << setw(10) << "n" << setw(15) << "Comparisons" << endl;
+            cout << setw(10) << "n" << setw(15) << "Assignments" << setw(15) << "Comparisons" << endl;
             for (int n = 0; n <= 500; n += 25) {
                 int compare_count_2 = 0;
-                recursive_square_sum(n, compare_count_2);
-                cout << setw(10) << n << setw(15) << compare_count_2 << endl;
+                int assign_count_2 = 0;
+                recursive_square_sum(n, assign_count_2, compare_count_2);
+                cout << setw(10) << n << setw(15) << assign_count_2 << setw(15) << compare_count_2 << endl;
             }
             cout << endl << endl;
             break;
