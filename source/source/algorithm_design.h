@@ -40,8 +40,6 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
     if (b == 0)
         return a;
     else {
-        //count_assign += 2;    // Assign a = b and b = a % b
-        //count_compare++;
         num_recursions++; // Increase the recursion count by 1
         return GCD_Euclid(b, a % b, count_assign, count_compare, num_recursions); // Recursion
     }
