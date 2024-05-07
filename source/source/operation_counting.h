@@ -20,13 +20,13 @@ int sum_half(int n, int& count_assign, int& count_compare) {
 
 
 // (ii) Recursive square sum:
-int recursive_square_sum(int n, int& count_assign, int& count_compare) {
+int recursive_square_sum(int n, int& count_compare) {
     // In the case of the following code, there is only comparison and no assignment
     count_compare++;
-    if (n < 1) { // has 1 comparison
+    if (n < 1)
         return 0;
     else
-        return n * n + recursive_square_sum(n - 1,  count_assign,count_compare);
+        return n * n + recursive_square_sum(n - 1, count_compare);
 }
 
 #endif 
