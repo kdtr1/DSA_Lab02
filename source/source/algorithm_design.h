@@ -48,7 +48,7 @@ int GCD_Euclid(int a, int b, long long& count_assign, long long& count_compare, 
 
 // (ii) Longest non decreasing subsequence: (LNDS)
 // Algorithm 1 (Brute-Force Approach):
-int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_compare) {
+int LNDS_Brute_Force(int* a, int n, long long& count_assign, long long& count_compare) {
     count_compare++; // Compare n == 0
     if (n == 0) {
         return 0;
@@ -61,7 +61,8 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
         for (int j = i; j < n; j++) {
             count_compare++; // Compare j < n
             count_assign++; // Assign j = i, ..., n-1
-            bool is_non_decreasing = true; count_assign++;
+            count_compare++;    // Compare i <= j
+            bool is_non_decreasing = true;
             for (int k = i + 1; k <= j; k++) {
                 count_compare++; // Compare k <= j
                 count_assign++; // Assign k = i+1, ..., j
@@ -74,11 +75,11 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
             }
             count_compare++; // Compare k > j
             count_assign++; // Assign k = j + 1
-            count_compare++; // Compare is_non_descreasing is true or false
+            count_compare++;
             if (is_non_decreasing) {
-                count_assign++; // Assign longest_length
+                count_assign++;
                 longest_length = max(longest_length, j - i + 1);
-                count_compare += 3; // Compare in max function
+                count_compare += 3;
             }
         }
         count_compare++; // Compare j = n
@@ -89,32 +90,28 @@ int LNDS_Brute_Force(int*& a, int n, long long& count_assign, long long& count_c
     return longest_length;
 }
 
-// Algorithm 2 (Simple LIS):
-int LNDS_simple(int*& a, int n, long long& count_assign, long long& count_compare) {
-    count_compare++; // Compare n == 0
-    if (n == 0) {
+// Algorithm 2 (Linear LNDS):
+int LNDS_Linear(int* a, int n, long long& count_assign, long long& count_compare) {
+    if (++count_compare && n == 0) {
         return 0;
     }
 
-    int longest_length = 1; int current_length = 1;
-    count_assign += 2;
-    for (int i = 0; i < n - 1; i++) {
-        count_compare++; // Compare i < n - 1
-        count_assign++; // Assign i = 0, 1, 2, ..., n-2
-        count_compare++; // Compare a[i] <= a[i + 1]
-        if (a[i] <= a[i + 1]) {
-            current_length++; count_assign++;
+    int longest_length = 1; count_assign++;
+    int current_length = 1; count_assign++;
+
+    count_assign++; // Assign i = 0
+    for (int i = 0; ++count_compare && i < n - 1; ++count_assign && ++i) {
+        if (++count_compare && a[i] <= a[i + 1]) {
+            ++current_length; count_assign++;
             longest_length = max(longest_length, current_length);
-            count_compare += 3; // Compare in max function
-            count_assign++; // Assign longest_length 
-        }
-        else {
-            current_length = 1;
+            count_compare += 3; // Compare in function max
             count_assign++;
         }
+        else {
+            count_assign++;
+            current_length = 1;
+        }
     }
-    count_compare++; //Compare i > n - 1
-    count_assign++; // Assign i = n
     return longest_length;
 }
 
@@ -177,29 +174,29 @@ double* median_array_Brute_Force(int* a, int n, long long& count_assign, long lo
 }
 
 // Algorithm 2 (Heap structure-priority queue):
-double* median_array_Heap(int* arr, int n, long long& count_assign, long long& count_compare) {
+double* median_array_Heap(int* a, int n, long long& count_assign, long long& count_compare) {
     priority_queue<double> s;
     priority_queue<double, vector<double>, greater<double> > g;
     double* res = new double[n];
 
-    int idx = 0; 
+    int idx = 0;
     count_assign++; //int idx = 0; 
-    double med = arr[0]; 
+    double med = a[0];
     count_assign++; //double med = arr[0];
 
-    s.push(arr[0]);
+    s.push(a[0]);
 
 
-    res[idx] = med; 
+    res[idx] = med;
     count_assign++; //res[idx] = med; 
-    idx++; 
+    idx++;
     count_assign++; //idx++;
 
     count_assign++;// int i = 1
     for (int i = 1; i < n; i++) {
         count_assign++; // i++
         count_compare++;// i<n
-        double x = arr[i];
+        double x = a[i];
         count_assign++; //double x = arr[i];
 
         if (s.size() > g.size()) count_compare++; //if (s.size() > g.size())
@@ -215,7 +212,7 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
             else
                 g.push(x);
 
-            med = (s.top() + g.top()) / 2.0; 
+            med = (s.top() + g.top()) / 2.0;
             count_assign++; //med = (s.top() + g.top()) / 2.0; 
         }
         else if (s.size() == g.size()) {
@@ -259,7 +256,7 @@ double* median_array_Heap(int* arr, int n, long long& count_assign, long long& c
 // (iv) Count inversions:
 // Algorithm 1 (Brute-Force Algorithm):
 int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, long long& count_comparisons) {
-    int inv_count = 0; 
+    int inv_count = 0;
     count_assignments++; //int inv_count = 0; 
 
     count_assignments++; // int i=0
@@ -275,7 +272,7 @@ int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, lo
             count_comparisons++;// if (a[i] > a[j])
             if (a[i] > a[j]) {
                 inv_count++;
-                count_assignments ++; //inv_count++;
+                count_assignments++; //inv_count++;
             }
         }
         count_comparisons++; // exit the loop
@@ -290,7 +287,7 @@ int count_inversions_Bruce_Force(int* a, int n, long long& count_assignments, lo
 int merge(int* a, int* temp, int left, int mid, int right, long long& count_assign, long long& count_compare) {
     count_assign = 0; //refresh value
     count_compare = 0; //refresh value
-    int inv_count = 0; 
+    int inv_count = 0;
     count_assign++; // int inv_count = 0; 
     int i = left;   // Start of first subarray 
     count_assign++; // int i = left; 
@@ -305,7 +302,7 @@ int merge(int* a, int* temp, int left, int mid, int right, long long& count_assi
 
         count_compare++; //if (a[i] <= a[j]) 
         if (a[i] <= a[j]) { // Compare and count assignement
-            temp[k++] = a[i++]; 
+            temp[k++] = a[i++];
             count_assign += 2; //k++ == (k = k+1)
             count_assign++; // Assignement temp[k] = arr[i]
         }
