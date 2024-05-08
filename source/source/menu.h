@@ -100,8 +100,8 @@ void process_menu_1() {
 void process_menu_2() {
     int choice; bool continue_running = true;
     srand((unsigned int)time(nullptr));
-    int u = 0, v = 0;
-    generate_random_data_number(u, v);
+    int u = 21, v = 13;
+    //generate_random_data_number(u, v);
     int n = 10;
     int* a = nullptr;
     int data_type = rand() % 3;
@@ -124,8 +124,7 @@ void process_menu_2() {
             long long count_assign_A_2 = 0, count_compare_A_2 = 0, count_recursions = 0;
             cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
             int res_A_1 = GCD_Brute_Force(max(u, v), min(u, v), count_assign_A_1, count_compare_A_1);
-            int res_A_2 = GCD_Euclid(max(u, v), min(u, v), count_compare_A_2, count_recursions);
-            count_assign_A_2 = count_recursions * 2;
+            int res_A_2 = GCD_Euclid(max(u, v), min(u, v), count_assign_A_2, count_compare_A_2, count_recursions);
             cout << "Algorithm 1 (Brute-Force Method):" << setw(10) << res_A_1 << setw(14) << count_assign_A_1 << setw(15) << count_compare_A_1 << endl;
             cout << "Algorithm 2 (Euclid's Algorithm):" << setw(10) << res_A_2 << setw(14) << count_assign_A_2 << setw(15) << count_compare_A_2 << endl;
             cout << endl << endl;
@@ -139,9 +138,9 @@ void process_menu_2() {
             long long count_assign_B_2 = 0, count_compare_B_2 = 0;
             cout << setw(45) << "Result" << setw(17) << "Assignments" << setw(15) << "Comparisons" << endl;
             int res_B_1 = LNDS_Brute_Force(a, n, count_assign_B_1, count_compare_B_1);
-            int res_B_2 = LNDS_simple(a, n, count_assign_B_2, count_compare_B_2);
+            int res_B_2 = LNDS_Linear(a, n, count_assign_B_2, count_compare_B_2);
             cout << "Algorithm 1 (Brute-Force Approach):" << setw(8) << res_B_1 << setw(14) << count_assign_B_1 << setw(15) << count_compare_B_1 << endl;
-            cout << "Algorithm 2 (Simple LIS):" << setw(18) << res_B_2 << setw(14) << count_assign_B_2 << setw(15) << count_compare_B_2 << endl;
+            cout << "Algorithm 2 (Linear LNDS):" << setw(17) << res_B_2 << setw(14) << count_assign_B_2 << setw(15) << count_compare_B_2 << endl;
             delete[] a; cout << endl << endl;
             break;
         }
@@ -246,4 +245,4 @@ void process_main_menu() {
     }
 }
 
-#endif
+#endif 
